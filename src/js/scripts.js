@@ -3,7 +3,11 @@ const searchInput = document.querySelector("#search-input");
 const section = document.querySelector("section");
 const errorMessage = document.querySelector("#error-message");
 
-// Fetch the pokemon API
+/**
+ * Fetches the pokemon API from the pokeapi.co website.
+ * @return {data} - contains the pokemon data from the API.
+ * @throws {Error} - if the fetch fails, an error is thrown. Additional error handling is done in the searchBtn event listener.
+ */
 async function fetchPokemon() {
   const userInput = await searchInput.value.toLowerCase().trim();
 
@@ -17,13 +21,16 @@ async function fetchPokemon() {
   return data;
 }
 
-// Filter the pokemon data to display
+/**
+ * Filters the pokemon data to only the name, id, sprite, type, weight, height, and base_experience.
+ * @param {data} data - contains data from the fetchPokemon function.
+ */
 function filterPokemonData(data) {
   const pokemonData = {
     name: data.name.charAt(0).toUpperCase() + data.name.slice(1),
     id: "#" + data.id,
     sprite: data.sprites.front_default,
-    Type: data.types.map((type) => type.type.name).join(", "), // Array of types - git co-pilot
+    Type: data.types.map((type) => type.type.name).join(", "),
     Weight: data.weight,
     Height: data.height,
     Base_experience: data.base_experience,
@@ -31,7 +38,7 @@ function filterPokemonData(data) {
   return pokemonData;
 }
 
-// Event listener for the search button
+// Event listeners for the search button
 searchBtn.addEventListener("click", async () => {
   if (searchInput.value !== "") {
     errorMessage.innerHTML = "";
@@ -46,7 +53,7 @@ searchBtn.addEventListener("click", async () => {
 
     searchInput.value = "";
   } catch (error) {
-    console.error(error);
+    console.error(error); // logs additional error information to the console.
     let errorElement = document.querySelector("#error-message");
     if (errorElement === null) {
       errorElement = document.createElement("p");
@@ -60,7 +67,18 @@ searchBtn.addEventListener("click", async () => {
   }
 });
 
-// Display the pokemon data
+// Clears the section to prevent the page from displaying multiple pokemon data.
+searchBtn.addEventListener("click", clearSection);
+
+function clearSection() {
+  section.innerHTML = "";
+}
+
+/**
+ * Displays pokemon's data through a table.
+ * @param {pokemon} pokemon - contains the pokemon data from the filterPokemonData function (name, id, sprite, type, weight, height, base_experience)
+ *
+ */
 function displayPokemon(pokemon) {
   const header = document.createElement("h2");
   header.textContent = pokemon.name + "'s Info";
@@ -78,13 +96,13 @@ function displayPokemon(pokemon) {
   const headerRow = document.createElement("tr");
   table.appendChild(headerRow);
 
-  // Name
+  // Header name of the pokemon
   const headerName = document.createElement("th");
   headerName.textContent = pokemon.name;
   headerName.classList.add("name");
   headerRow.appendChild(headerName);
 
-  // ID
+  // Header id of the pokemon
   const headerID = document.createElement("th");
   headerID.textContent = pokemon.id;
   headerID.id = "pokemon-id";
@@ -99,18 +117,18 @@ function displayPokemon(pokemon) {
   const sprite = document.createElement("img");
   sprite.id = "sprite-img";
   sprite.src = pokemon.sprite;
-  sprite.alt = pokemon.name;
+  sprite.alt = pokemon.name + " sprite";
 
   spriteCell.appendChild(sprite);
   spriteRow.appendChild(spriteCell);
 
-  // Loop through the rest of the data and create table rows
+  // Loops through the rest of the data and creates a row for each property and value from the filterPokemonData function
   for (const pokemonInfo in pokemon) {
     if (pokemonInfo !== "name" && pokemonInfo !== "id" && pokemonInfo !== "sprite") {
       // create row
       const row = document.createElement("tr");
       table.appendChild(row);
-      // create cell for the property
+      // create cell for the property (type, weight, height, base_experience)
       const pokemonProperty = document.createElement("td");
       pokemonProperty.textContent = pokemonInfo;
       row.appendChild(pokemonProperty);
@@ -122,11 +140,3 @@ function displayPokemon(pokemon) {
     }
   }
 }
-
-// Clear the section
-function clearSection() {
-  section.innerHTML = "";
-}
-
-// Clear the section when the user clicks on the search input and types a new pokemon
-searchBtn.addEventListener("click", clearSection);
