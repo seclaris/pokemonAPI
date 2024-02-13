@@ -3,10 +3,67 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WCB Web Dev Template</title>
+    <title>Pokepedia</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   </head>
   <body>
+    <div class="container">
+      <header>
+        <h1>Poképedia</h1>
+        <form class="search" action="#" method="GET">
+          <input type="text" id="search-input" placeholder="Search Pokémon Index">
+          <button type="submit" id="search-btn">
+            <i class="fa-solid fa-search"></i></button>
+        </form>
+      </header>
+      <main>
+        <div class="wrapper">
+          <section>
+              <h2 class="name">Pikachu</h2> <!-- Species Name -->
+              <div id="info">
+                <table>
+                  <tr>
+                    <th class="name">
+                      Pikachu
+                    </th>
+                    <th id="pokemon-id">
+                      #25
+                    </th>
+                  </tr>
+                  <tr>
+                    <td colspan="2">
+                      <img id="sprite-img" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="Pikachu"> <!-- Official Artwork -->
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Type</td>
+                    <td id="type">Electric</td> <!-- Type Name(s) -->
+                  </tr>
+                  <tr>
+                    <td>Weight</td>
+                    <td id="weight">60</td> <!-- Weight -->
+                  </tr>
+                  <tr>
+                    <td>Height</td>
+                    <td id="height">4</td> <!-- Height -->
+                  </tr>
+                  <tr>
+                    <td>Base Experience</td>
+                    <td id="base-experience">112</td> <!-- Base Experience -->
+                  </tr>
+                </table>
+            </div>
+          </section>
+        </div>    
+      </main>
+    </div>
 	  <script src="js/scripts.js" defer></script>
+    <script src="https://kit.fontawesome.com/5af80ed704.js" crossorigin="anonymous"></script>
   </body>
+  <footer>
+    <p>© 2021 Poképedia</p>
+  </footer>
 </html>
