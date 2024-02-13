@@ -2,6 +2,9 @@
 
 ## About The Project
 
+We are instructed to create a website where users can search up a Pokemon name which shows information about the pokemon that is fetched from a [public Pokemon API](https://pokeapi.co/).
+
+![Screenshot Demo of Pokemon API](https://i.imgur.com/plDtmLP.jpeg)
 
 ### Built With
 
@@ -10,10 +13,19 @@
 - ![Git](https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white)
 
 ### Future Implementations/Improvements.
+- Add Stats with bars
+- Add "Did you mean ___?" If user tries to input a pokemon name, try to find closest possible pokemon name for option choice.
+- Add favourites
+- Add CSS styling:
+    - pokemon sprite animation
+    - Type colours
+    - Card-like design for pokemon information results 
 
 ### Bugs
 
 No known extensive bugs at this time.
+
+- Issue of page refreshing at first form submit, resulting with no pokemon data or error message. **Fixed: Added prevent default on submit**
 
 #### Other Issues
 
@@ -54,9 +66,8 @@ To run the project, start `./src/index.html`.
 
 ## Credits and Acknowledgements
 
-- [Citations]()
+- [Citations](https://github.com/Web-Development-UAlberta/exsm3936-module-05-assignment-api-async-seclaris/blob/main/docs/Citations.md)
 
 <p align="right">
 (<a href="#exsm-3936---javascript-ii---pokemon-api">back to top</a>)
 </p>
-
