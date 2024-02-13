@@ -1,6 +1,9 @@
 # Citations
 
-GitHub CoPilot.
+CodeDamn. *How to Submit a HTML Form with JavaScript*. https://codedamn.com/news/javascript/submit-form-with-javascript#javascript_form_submission
+- Helped me figure out the reason for the problem I ran into where the first click on search wasn't presenting the information or error message.
+
+GitHub CoPilot. Generated on February 12.
 ```JavaScript
     Type: data.types.map((type) => type.type.name).join(", "),
 ```
@@ -20,3 +23,5 @@ W3Schools. *CSS Table Size* https://www.w3schools.com/css/css_table_size.asp
 W3Schools. *How TO - Search Button*. https://www.w3schools.com/howto/howto_css_search_button.asp
 - Followed steps of the CSS example to customize the search button to what I wanted it to look like.
 
+
+[Return to README.md](https://github.com/Web-Development-UAlberta/exsm3936-module-05-assignment-api-async-seclaris/blob/main/docs/README.md)
