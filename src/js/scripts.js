@@ -1,7 +1,8 @@
 const searchBtn = document.querySelector("#search-btn");
 const searchInput = document.querySelector("#search-input");
-const section = document.querySelector("section");
 const errorMessage = document.querySelector("#error-message");
+const divWrapper = document.querySelector(".wrapper");
+const form = document.querySelector("form");
 
 /**
  * Fetches the pokemon API from the pokeapi.co website.
@@ -38,7 +39,12 @@ function filterPokemonData(data) {
   return pokemonData;
 }
 
-// Event listeners for the search button
+// Event listeners
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+});
+
 searchBtn.addEventListener("click", async () => {
   if (searchInput.value !== "") {
     errorMessage.innerHTML = "";
@@ -50,19 +56,13 @@ searchBtn.addEventListener("click", async () => {
     pokemonData = await fetchPokemon();
     pokemon = filterPokemonData(pokemonData);
     displayPokemon(pokemon);
-
     searchInput.value = "";
   } catch (error) {
     console.error(error); // logs additional error information to the console.
-    let errorElement = document.querySelector("#error-message");
-    if (errorElement === null) {
-      errorElement = document.createElement("p");
-      errorMessage.appendChild(errorElement);
-    }
     if (searchInput.value === "") {
-      errorElement.textContent = "ERROR: " + error.message + ". Please enter a pokemon name.";
+      errorMessage.textContent = "ERROR: " + error.message + ". Please enter a pokemon name.";
     } else {
-      errorElement.textContent = "ERROR: " + error.message;
+      errorMessage.textContent = "ERROR: " + error.message;
     }
   }
 });
@@ -71,15 +71,20 @@ searchBtn.addEventListener("click", async () => {
 searchBtn.addEventListener("click", clearSection);
 
 function clearSection() {
-  section.innerHTML = "";
+  const section = document.querySelector("section");
+  if (section !== null) {
+    section.remove();
+  }
 }
-
 /**
  * Displays pokemon's data through a table.
  * @param {pokemon} pokemon - contains the pokemon data from the filterPokemonData function (name, id, sprite, type, weight, height, base_experience)
  *
  */
 function displayPokemon(pokemon) {
+  const section = document.createElement("section");
+  divWrapper.appendChild(section);
+
   const header = document.createElement("h2");
   header.textContent = pokemon.name + "'s Info";
   section.appendChild(header);
